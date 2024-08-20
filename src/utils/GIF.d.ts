@@ -81,3 +81,10 @@ export interface Analytics {
 export interface OnloadOrOnclickOrOnsent {
   url: string;
 }
+export interface GIFImageType {
+  id: string;
+  title: string;
+  images: Images;
+  alt: string;
+  import_time: Date;
+}
