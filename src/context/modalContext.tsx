@@ -27,6 +27,8 @@ function ModalContextProvider({ children }: ModalProviderProps) {
     handleOpen()
   };
 
+  //TODO: set modal view
+
   return (
     <ModalContext.Provider value={{ showModal }}>
       <Modal

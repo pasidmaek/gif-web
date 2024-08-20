@@ -10,6 +10,9 @@ import CardComponent from './component/CardComponent';
 import { GifType } from './utils/GIF';
 
 function App() {
+
+  //TODO: set reducer for fetch data and add skeleton
+
   const { showAlert } = useAlert()
   const [lists, setLists] = useState([])
   // const [searchLists, setSearchLists] = useState([])
