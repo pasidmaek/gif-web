@@ -1,43 +1,25 @@
 import axios from "axios"
 import { useReducer } from "react"
+import { useAlert } from "../context/alertContext"
 
-const initialState = {
-  loading: true,
-  data: {},
-  error: ''
-}
-
-export default function fetchReducer({ state, action }: fetchReducer) {
-  switch (action.type) {
-    case "FETCH_SUCCESS":
-      return {
-        ...state,
-        loading: false,
-        data: {},
-        error: ""
-      }
-    case "FETCH_ERROR":
-      return {
-        ...state,
-        loading: false,
-        data: {},
-        error: "something wrong"
-      }
-    default:
-      return state
+export const fetchGIF = async () => {
+  try {
+    const response = await axios.get('https://api.giphy.com/v1/gifs/trending?api_key=3q5pxzLsape8AUyfllbZqHp7mTar7osz&limit=25&offset=0&rating=g&bundle=messaging_non_clips')
+    return { status: response.status, data: response.data }
+  } catch (e: any) {
+    console.log(e)
+    return { status: e.status, data: null }
   }
 }
 
-export { initialState }
-
-// const fetchGIF = async () => {
-
-//   try {
-//     console.log('fetch')
-//     const response = await axios.get('https://api.giphy.com/v1/gifs/trending?api_key=3q5pxzLsape8AUyfllbZqHp7mTar7osz&limit=25&offset=0&rating=g&bundle=messaging_non_clips')
-//     console.log(response)
-//     return response.data
-//   }
-//   catch (e) {
-//   }
-// }
+export const fetchGIFById = async (id: string) => {
+  try {
+    // console.log(id)
+    const response = await axios.get(`https://api.giphy.com/v1/gifs/${id}?api_key=3q5pxzLsape8AUyfllbZqHp7mTar7osz&rating=g`)
+    // console.log(response)
+    return response.data
+  } catch (e: any) {
+    console.log(e.message)
+    return null
+  }
+}

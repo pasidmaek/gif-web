@@ -2,11 +2,11 @@ import { ReactNode, createContext, useEffect, useState, useContext } from "react
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import { GifType } from "../utils/GIF";
+import { GIFImageType, GifType } from "../utils/GIF";
 import './modal.css';
 
 type ModalContextType = {
-  showModal: (data: GifType) => void;
+  showModal: (data: GIFImageType) => void;
 };
 
 export const ModalContext = createContext<ModalContextType | undefined>(undefined);
@@ -17,12 +17,12 @@ type ModalProviderProps = {
 
 function ModalContextProvider({ children }: ModalProviderProps) {
   const [open, setOpen] = useState(false);
-  const [data, setData] = useState<GifType | null>(null)
+  const [data, setData] = useState<GIFImageType | null>(null)
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const showModal = (data: GifType) => {
+  const showModal = (data: GIFImageType) => {
     setData(data)
     handleOpen()
   };
