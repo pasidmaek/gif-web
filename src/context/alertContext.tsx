@@ -1,5 +1,5 @@
 import { Alert } from "@mui/material";
-import { ReactNode, createContext, useEffect, useState, useContext } from "react";
+import { ReactNode, createContext, useState, useContext } from "react";
 
 type AlertType = {
   type: "success" | "error" | "info";

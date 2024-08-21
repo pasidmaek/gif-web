@@ -1,6 +1,4 @@
 import axios from "axios"
-import { useReducer } from "react"
-import { useAlert } from "../context/alertContext"
 
 export const fetchGIF = async () => {
   try {

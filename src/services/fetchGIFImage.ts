@@ -1,7 +1,7 @@
 import axios from "axios";
 import { GifType } from "../utils/GIF";
 
-export async function fetchGIFTrending(offset?: string) {
+export async function fetchGifTrending(offset?: number) {
   const url = 'https://api.giphy.com/v1/gifs'
 
   try {

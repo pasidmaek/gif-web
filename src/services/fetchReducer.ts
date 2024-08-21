@@ -7,7 +7,7 @@ type fetchActionType = {
 
 type initialStateType = {
   loading: boolean,
-  data: [] | null,
+  data: GIFImageType[] | null,
   error: string
 }
 

@@ -1,35 +1,33 @@
-import { ReactNode, createContext, useEffect, useState } from "react";
-import { GifType } from "../utils/GIF";
+import { ReactNode, createContext, useContext, useEffect, useReducer } from "react";
+import savedReducer, { initialSavedState } from "../services/savedReducer";
+import { initialSavedStateType, saveActionType } from "../utils/save";
 
-type SavedContextType = {
-  data: GifType[];
-};
-
-export const SavedContext = createContext<SavedContextType | null>(null);
+export const SavedContext = createContext<{ state: initialSavedStateType; dispatch: React.Dispatch<saveActionType> } | undefined>(undefined);
 
 type ContextProviderProps = {
   children: ReactNode;
 };
 
-function SavedContextProvider({ children }: ContextProviderProps) {
-  const [savedList, setSavedList] = useState<GifType[]>([]);
+export default function SavedContextProvider({ children }: ContextProviderProps) {
+  const [state, dispatch] = useReducer(savedReducer, initialSavedState);
 
   useEffect(() => {
-    const lists = localStorage.getItem('saved-GIF');
-    if (lists) {
-      try {
-        setSavedList(JSON.parse(lists));
-      } catch (error) {
-        console.error("Failed to parse saved GIFs from localStorage", error);
-      }
-    }
+    const savedList = JSON.parse(localStorage.getItem('saveList') || '[]');
+    dispatch({ type: 'INIT_LIST', payload: savedList });
   }, []);
 
   return (
-    <SavedContext.Provider value={{ data: savedList }}>
+    <SavedContext.Provider value={{ state, dispatch }}>
       {children}
     </SavedContext.Provider>
   );
 }
 
-export default SavedContextProvider;
+
+export const useSavedList = () => {
+  const context = useContext(SavedContext);
+  if (context === undefined) {
+    throw new Error('useSavedList must be used within a SavedListProvider');
+  }
+  return context;
+};

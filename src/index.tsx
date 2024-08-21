@@ -10,11 +10,18 @@ import reportWebVitals from './reportWebVitals';
 import SavedContextProvider from './context/savedContext';
 import AlertContextProvider from './context/alertContext';
 import ModalContextProvider from './context/modalContext';
+import Saved from './pages/Saved';
+import Header from './component/Header';
+import Feed from './pages/Feed';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <Feed />,
+  },
+  {
+    path: "/save",
+    element: <Saved />,
   },
 ]);
 
@@ -26,6 +33,7 @@ root.render(
     <AlertContextProvider>
       <ModalContextProvider>
         <SavedContextProvider>
+          <Header />
           <RouterProvider router={router} />
         </SavedContextProvider>
       </ModalContextProvider>
