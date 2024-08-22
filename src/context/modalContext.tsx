@@ -1,9 +1,9 @@
-import { ReactNode, createContext, useEffect, useState, useContext } from "react";
+import { ReactNode, createContext, useState, useContext } from "react";
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import { GIFImageType, GifType } from "../utils/GIF";
-import './modal.css';
+import { GIFImageType } from "../utils/GIF";
+import { CardMedia } from "@mui/material";
 
 type ModalContextType = {
   showModal: (data: GIFImageType) => void;
@@ -27,8 +27,6 @@ function ModalContextProvider({ children }: ModalProviderProps) {
     handleOpen()
   };
 
-  //TODO: set modal view
-
   return (
     <ModalContext.Provider value={{ showModal }}>
       <Modal
@@ -42,18 +40,28 @@ function ModalContextProvider({ children }: ModalProviderProps) {
           top: '50%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
-          width: 400,
           bgcolor: 'background.paper',
-          border: '2px solid #000',
           boxShadow: 24,
           p: 4,
         }}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            {data?.title}
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography>
+          <div className="flex flex-row space-x-20">
+            <CardMedia
+              component="img"
+              height="120px"
+              width="100%"
+              sx={{ objectFit: 'cover' }}
+              image={data?.images.original.url}
+              alt={data?.title}
+            />
+            {/* <div className="min-w-80">
+              <Typography id="modal-modal-title" variant="h6" component="h2">
+                {data?.title}
+              </Typography>
+              <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                {data?.alt}
+              </Typography>
+            </div> */}
+          </div>
         </Box>
       </Modal>
       {children}

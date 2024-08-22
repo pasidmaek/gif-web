@@ -1,20 +1,23 @@
-import { Button } from '@mui/material'
 import React from 'react'
+import { Button } from '@mui/material'
+import { Link } from 'react-router-dom'
+import { useSavedList } from '../context/savedContext'
 
 function Header() {
+  const { state } = useSavedList()
+
   return (
     <header className="App-header">
-      <h1>GIF Searcher</h1>
-      <div>
-        <Button>
+      <Link to="/">GIF Searcher</Link>
+      <div className='flex gap-4'>
+        <Button variant="contained">
           Search
         </Button>
-        <Button>
-          {/* {`Save${data.length ? `(${data.length})` : ''}`} */}
-          Save
+        <Button variant="contained">
+          <Link to="/save">{`Saved(${state.save_list.length})`}</Link>
         </Button>
       </div>
-    </header>
+    </header >
   )
 }
 

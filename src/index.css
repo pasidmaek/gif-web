@@ -19,6 +19,7 @@ code {
 .App-header {
   background-color: #282c34;
   display: flex;
+  padding: 10px;
   justify-content: space-between;
   flex-direction: row;
   font-size: calc(10px + 2vmin);

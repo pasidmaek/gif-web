@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -17,11 +16,25 @@ import Feed from './pages/Feed';
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Feed />,
+    element: (
+      <>
+        <Header />
+        <AlertContextProvider>
+          <Feed />
+        </AlertContextProvider>
+      </>
+    ),
   },
   {
     path: "/save",
-    element: <Saved />,
+    element: (
+      <>
+        <Header />
+        <AlertContextProvider>
+          <Saved />
+        </AlertContextProvider>
+      </>
+    ),
   },
 ]);
 
@@ -30,15 +43,12 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <AlertContextProvider>
-      <ModalContextProvider>
-        <SavedContextProvider>
-          <Header />
-          <RouterProvider router={router} />
-        </SavedContextProvider>
-      </ModalContextProvider>
-    </AlertContextProvider>
-  </React.StrictMode>
+    <ModalContextProvider>
+      <SavedContextProvider>
+        <RouterProvider router={router} />
+      </SavedContextProvider>
+    </ModalContextProvider>
+  </React.StrictMode >
 );
 
 // If you want to start measuring performance in your app, pass a function
