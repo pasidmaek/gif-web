@@ -50,32 +50,33 @@ function CardComponent({ data, onUnSave }: CardType) {
             image={data.images.original.url}
             alt={data.title}
           />
-          <IconButton
-            aria-label="Add to favorites"
-            sx={{
-              position: 'absolute',
-              top: 8,
-              right: 8,
-              backgroundColor: 'rgba(255, 255, 255, 0.7)',
-            }}
-            onClick={(e) => {
-              e.stopPropagation();
-              handleSaveGif();
-            }}
-          >
-            <Favorite
-              color={isSave ? 'error' : 'disabled'}
-              sx={{
-                '&:hover': {
-                  color: '#FFA6A1',
-                },
-              }}
-            />
-          </IconButton>
         </CardActionArea>
+        <IconButton
+          aria-label="Add to favorites"
+          sx={{
+            position: 'absolute',
+            top: 8,
+            right: 8,
+            backgroundColor: 'rgba(255, 255, 255, 0.7)',
+          }}
+          onClick={(e) => {
+            e.stopPropagation();
+            handleSaveGif();
+          }}
+        >
+          <Favorite
+            color={isSave ? 'error' : 'disabled'}
+            sx={{
+              '&:hover': {
+                color: '#FFA6A1',
+              },
+            }}
+          />
+        </IconButton>
       </Card>
     </SavedContextProvider>
-  )
+  );
 }
+
 
 export default CardComponent
