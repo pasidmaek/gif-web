@@ -1,4 +1,3 @@
-import { useEffect, useReducer } from "react";
 import { GIFImageType } from "../utils/GIF";
 import { initialSavedStateType, saveActionType } from "../utils/save";
 
@@ -36,20 +35,3 @@ export default function savedReducer(state: initialSavedStateType, action: saveA
       return state;
   }
 }
-
-export const useSavedList = () => {
-  const [state, dispatch] = useReducer(savedReducer, initialSavedState);
-
-  useEffect(() => {
-    const saveList = localStorage.getItem('saveList');
-    if (saveList) {
-      dispatch({ type: 'INIT_LIST', payload: JSON.parse(saveList) });
-    }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem('saveList', JSON.stringify(state.save_list));
-  }, [state.save_list]);
-
-  return [state, dispatch] as const;
-};

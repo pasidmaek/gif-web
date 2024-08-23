@@ -1,8 +1,8 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useAlert } from '../context/alertContext';
 import { GIFImageType } from '../utils/GIF';
 import { fetchGifSearch, fetchGifTrending } from '../services/fetchGifImage';
-import { Skeleton, TextField } from '@mui/material';
+import { Skeleton } from '@mui/material';
 import CardComponent from '../component/CardComponent';
 import useDebounce from '../hook/debounceHook';
 
@@ -59,8 +59,8 @@ function Feed() {
           ) : lists.length !== 0 ? (
             <>
               {
-                lists.map((data: GIFImageType) => (
-                  <CardComponent data={data} key={data.id} />
+                lists.map((data: GIFImageType, index: number) => (
+                  <CardComponent data={data} key={data.id + index} />
                 ))
               }
               <button

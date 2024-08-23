@@ -1,5 +1,5 @@
 import { ReactNode, createContext, useContext, useEffect, useReducer } from "react";
-import savedReducer, { initialSavedState } from "../services/savedReducer";
+import savedReducer, { initialSavedState } from "../reducer/savedReducer";
 import { initialSavedStateType, saveActionType } from "../utils/save";
 
 export const SavedContext = createContext<{ state: initialSavedStateType; dispatch: React.Dispatch<saveActionType> } | undefined>(undefined);

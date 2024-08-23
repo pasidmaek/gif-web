@@ -28,7 +28,7 @@ function AlertContextProvider({ children }: AlertProviderProps) {
   return (
     <AlertContext.Provider value={{ showAlert, alert }}>
       {alert && (
-        <Alert severity={alert.type} sx={{ position: "fixed", right: 10, top: 70, zIndex: 100 }} >
+        <Alert severity={alert.type} sx={{ position: "fixed", right: 10, top: 80, zIndex: 100 }} >
           {alert.message}
         </Alert>
       )}
